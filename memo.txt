@@ -1,0 +1,50 @@
+
+==========
+0. Install
+==========
+
+~/work/lang/c/ansi_c/
+
+wget https://github.com/Kitware/CMake/releases/download/v3.26.3/cmake-3.26.3-linux-x86_64.sh
+sh ./cmake-3.26.3-linux-x86_64.sh 
+
+
+========
+1. cJSON
+========
+
+git clone https://github.com/DaveGamble/cJSON
+cd cJSON
+mkdir build
+cd build
+../../cmake-3.26.3-linux-x86_64/bin/cmake ..
+vi CMakeCache.txt
+
+   //Flags used by the C compiler during all build types.
+   CMAKE_C_FLAGS:STRING=-save-temps
+
+
+======
+2. lcc
+======
+
+vi makefile
+
+   BUILDDIR=./build
+
+   CC=cc -save-temps
+
+
+mkdir build
+
+mkdir build/include
+cp -p -R include/x86/* ./build/include
+
+ln -s /usr/lib/gcc/x86_64-linux-gnu/11 ./build/gcc
+
+
+make HOSTFILE=etc/linux.c lcc
+
+make TARGET=x86/linux test
+
+
