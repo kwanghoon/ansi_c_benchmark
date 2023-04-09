@@ -32,7 +32,7 @@ vi makefile
 
    BUILDDIR=./build
 
-   CC=cc -save-temps
+   CC=cc -save-temps -DNDEBUG
 
 
 mkdir build
